@@ -6,15 +6,15 @@
 #    By: aarnell <aarnell@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/01 16:16:16 by aarnell           #+#    #+#              #
-#    Updated: 2022/05/01 20:11:36 by aarnell          ###   ########.fr        #
+#    Updated: 2022/05/02 18:20:05 by aarnell          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 	= 	phonebook
+NAME 	= 	ex01
 
 FLAGS	= 	-Wall -Werror -Wextra -std=c++98
 
-SRS		= 	main.cpp
+SRS		= 	main.cpp	phonebook.cpp	contact.cpp
 
 OBJS	=	$(SRS:.cpp=.o)
 
