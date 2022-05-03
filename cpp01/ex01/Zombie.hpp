@@ -6,10 +6,8 @@ class Zombie
 	std::string name;
 
 public:
-	Zombie(std::string z_name);
+	Zombie();
 	void announce();
+	void setName(std::string z_name);
 	~Zombie();
 };
-
-void	randomChump(std::string name);
-Zombie	*newZombie(std::string name);

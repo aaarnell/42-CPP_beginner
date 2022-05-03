@@ -6,15 +6,15 @@
 #    By: aarnell <aarnell@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/01 16:16:16 by aarnell           #+#    #+#              #
-#    Updated: 2022/05/03 13:02:19 by aarnell          ###   ########.fr        #
+#    Updated: 2022/05/03 17:25:47 by aarnell          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 	= 	ex00
+NAME 	= 	ex02
 
 FLAGS	= 	-Wall -Werror -Wextra -std=c++98
 
-SRS		= 	main.cpp	Zombie.cpp	newZombie.cpp	randomChump.cpp
+SRS		= 	main.cpp
 
 OBJS	=	$(SRS:.cpp=.o)
 
