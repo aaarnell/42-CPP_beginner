@@ -1,5 +1,4 @@
 #include <iostream>
-//#include <string>
 #include <fstream>
 
 std::string change_occurrences(std::string base, std::string comp, std::string repl)
@@ -30,23 +29,18 @@ int main(int argc, char *argv[])
 	std::ifstream	in;
 	std::ofstream	out;
 
-	//открыть файл
 	in.open(filename);
-	//проверить корректность открытия файла
 	if (!in)
 	{
 		std::cerr << "Error opening source file" << std::endl;
 		return -1;
 	}
-	//создать и открыть новый файл
 	out.open(filename.append(".replace"));
-	//проверить, что открыт
 	if (!out)
 	{
 		std::cerr << "Error opening target file" << std::endl;
 		return -1;
 	}
-	//получаем строку из файла-источника
 	while(!in.eof())
 	{
 		std::getline(in, str);
