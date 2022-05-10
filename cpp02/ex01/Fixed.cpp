@@ -58,8 +58,8 @@ int Fixed::toInt(void) const
 	return rawBits / (1 << fraction);
 }
 
-std::ostream& operator<<(std::ostream &out, const Fixed &other)
+std::ostream& operator<<(std::ostream &out, const Fixed &obj)
 {
-	out << other.toFloat();
+	out << obj.toFloat();
 	return out;
 }
