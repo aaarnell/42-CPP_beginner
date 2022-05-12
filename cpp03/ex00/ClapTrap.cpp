@@ -55,7 +55,10 @@ DESTRUCTORS
 */
 
 ClapTrap::~ClapTrap(void)
-{}
+{
+	std::cout	<< "The Claptrap class object named '" << this->name
+				<< "' has been destroyed by the class destructor." << std::endl;
+}
 
 
 /*
