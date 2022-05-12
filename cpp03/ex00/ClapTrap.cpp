@@ -62,7 +62,7 @@ ClapTrap::~ClapTrap(void)
 REDEFINITION OPERATORS
 */
 
-ClapTrap& ClapTrap::operator=(const Fixed &other)
+ClapTrap& ClapTrap::operator=(const ClapTrap &other)
 {
 	std::string tmp;
 
@@ -88,6 +88,26 @@ ClapTrap& ClapTrap::operator=(const Fixed &other)
 METHODS
 */
 
+std::string ClapTrap::getName(void)
+{
+	return name;
+}
+
+int ClapTrap::getHitPoints(void)
+{
+	return hitPoints;
+}
+
+int ClapTrap::getEnergyPoints(void)
+{
+	return energyPoints;
+}
+
+int ClapTrap::getDamagePoints(void)
+{
+	return damagePoints;
+}
+
 void ClapTrap::attack(const std::string& target)
 {
 	if (this->hitPoints < 0)
@@ -98,7 +118,7 @@ void ClapTrap::attack(const std::string& target)
 	}
 	if (!this->energyPoints)
 	{
-		std::cout	<< "ATTENTION! '"	<< this->name
+		std::cout	<< "ATTENTION! '" << this->name
 					<< "' has 0 energy points. He cannot attack."	<< std::endl;
 		return ;
 	}
@@ -154,8 +174,8 @@ void ClapTrap::beRepaired(unsigned int amount)
 		return ;
 	}
 
-	this->energyPoints -= 1;
-	this->hitPoints = maxHP;
+	this->energyPoints -= amount;
+	this->hitPoints += amount;
 
 	std::cout	<< "'" << this->name
 				<< "' has been repaired. '" << this->name
