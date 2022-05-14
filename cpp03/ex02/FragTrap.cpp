@@ -1,28 +1,28 @@
 #include <iostream>
 #include <string>
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 /*
 CONSTRUCTORS
 */
 
-ScavTrap::ScavTrap(void)
-	: ClapTrap("Default", 100, 50, 20)
+FragTrap::FragTrap(void)
+	: ClapTrap("Default", 100, 100, 30)
 {
-	std::cout	<< "The default ScavTrap class constructor"
+	std::cout	<< "The default FragTrap class constructor"
 				<< " created an object with name 'Default'." << std::endl;
 }
 
-ScavTrap::ScavTrap(std::string _name, int hitPoints,
+FragTrap::FragTrap(std::string _name, int hitPoints,
 	int energyPoints, int damagePoints)
 	: ClapTrap(_name, hitPoints, energyPoints, damagePoints)
 {
-	std::cout	<< "ScavTrap class constructor created an"
+	std::cout	<< "FragTrap class constructor created an"
 				<< " object with name '" << _name << "'." << std::endl;
 
 }
 
-ScavTrap::ScavTrap(const ScavTrap &other)
+FragTrap::FragTrap(const FragTrap &other)
 {
 	std::string tmp;
 
@@ -34,7 +34,7 @@ ScavTrap::ScavTrap(const ScavTrap &other)
 	this->setEnergyPoints(other.getEnergyPoints());
 	this->setDamagePoints(other.getDamagePoints());
 
-	std::cout	<< "The copy constructor of the ScavTrap class"
+	std::cout	<< "The copy constructor of the FragTrap class"
 				<< " copied the object with name '" << other.getName()
 				<< "' into object with name '" << tmp
 				<< "'."<< std::endl;
@@ -45,9 +45,9 @@ ScavTrap::ScavTrap(const ScavTrap &other)
 DESTRUCTORS
 */
 
-ScavTrap::~ScavTrap(void)
+FragTrap::~FragTrap(void)
 {
-	std::cout	<< "The ScavTrap class object named '" << this->getName()
+	std::cout	<< "The FragTrap class object named '" << this->getName()
 				<< "' has been destroyed by the class destructor." << std::endl;
 }
 
@@ -55,7 +55,7 @@ ScavTrap::~ScavTrap(void)
 REDEFINITION OPERATORS
 */
 
-ScavTrap& ScavTrap::operator=(const ScavTrap &other)
+FragTrap& FragTrap::operator=(const FragTrap &other)
 {
 	std::string tmp;
 
@@ -69,9 +69,9 @@ ScavTrap& ScavTrap::operator=(const ScavTrap &other)
 		this->setEnergyPoints(other.getEnergyPoints());
 		this->setDamagePoints(other.getDamagePoints());
 	}
-	std::cout	<< "An object of the ScavTrap class with the name '"
+	std::cout	<< "An object of the FragTrap class with the name '"
 				<< other.getName() << "' is copied into an object of the"
-				<< " ScavTrap class with the name '" << tmp
+				<< " FragTrap class with the name '" << tmp
 				<< "' through an assignment operator." << std::endl;
 	return *this;
 }
@@ -81,15 +81,15 @@ ScavTrap& ScavTrap::operator=(const ScavTrap &other)
 METHODS
 */
 
-void ScavTrap::attack(const std::string& target)
+void FragTrap::attack(const std::string& target)
 {
-	std::cout << "(ScavTrap) ";
+	std::cout << "(FragTrap) ";
 	ClapTrap::attack(target);
 }
 
-void ScavTrap::guardGate(void)
+void FragTrap::highFivesGuys(void)
 {
-	std::cout	<< "An object of class ScavTrap '" << this->getName()
-				<< "' is in the Gate keeper mode." << std::endl;
+	std::cout	<< "An object of class FragTrap '" << this->getName()
+				<< "' sad 'High five'." << std::endl;
 }
 

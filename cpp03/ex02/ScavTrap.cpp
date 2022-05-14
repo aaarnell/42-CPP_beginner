@@ -24,12 +24,20 @@ ScavTrap::ScavTrap(std::string _name, int hitPoints,
 
 ScavTrap::ScavTrap(const ScavTrap &other)
 {
+	std::string tmp;
+
+	tmp = this->getName();
 	this->setName(other.getName());
 	this->setMaxHP(other.getMaxHP());
 	this->setMaxEP(other.getMaxEP());
 	this->setHitPoints(other.getHitPoints());
 	this->setEnergyPoints(other.getEnergyPoints());
 	this->setDamagePoints(other.getDamagePoints());
+
+	std::cout	<< "The copy constructor of the ScavTrap class"
+				<< " copied the object with name '" << other.getName()
+				<< "' into object with name '" << tmp
+				<< "'."<< std::endl;
 }
 
 
@@ -72,6 +80,12 @@ ScavTrap& ScavTrap::operator=(const ScavTrap &other)
 /*
 METHODS
 */
+
+void ScavTrap::attack(const std::string& target)
+{
+	std::cout << "(ScavTrap) ";
+	ClapTrap::attack(target);
+}
 
 void ScavTrap::guardGate(void)
 {
