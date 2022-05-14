@@ -21,7 +21,7 @@ static void putCompST(const ScavTrap& obj)
 				<< "'\tHP = " << obj.getHitPoints()
 				<< "'\tEP = " << obj.getEnergyPoints()
 				<< "'\tDP = " << obj.getDamagePoints()
-				<< std::endl;
+				<< "'\t";
 }
 
 int	main(void)
@@ -58,27 +58,21 @@ int	main(void)
 	std::cout << "Objects of class ClapTrap:" << std::endl;
 	std::cout << "obj 'Pusya'\t";
 	putCompCT(Pusya);
-	Pusya.attack(a.getName());
 	std::cout << "obj 'a(Pusya)'\t";
 	putCompCT(a);
-	a.attack(b.getName());
 	std::cout << "obj 'b = a'\t";
 	putCompCT(b);
-	b.attack(Pusya.getName());
 	std::cout << "---" << std::endl;
 	std::cout << "Objects of class ScavTrap:" << std::endl;
 	std::cout << "obj 'Dusya'\t";
 	putCompST(Dusya);
 	Dusya.guardGate();
-	Dusya.attack(c.getName());
 	std::cout << "obj 'c(Dusya)'\t";
 	putCompST(c);
 	c.guardGate();
-	c.attack(d.getName());
 	std::cout << "obj 'd = c'\t";
 	putCompST(d);
 	d.guardGate();
-	d.attack(Dusya.getName());
 	std::cout << "\n\t--- End composition check ---\n" << std::endl;
 	return (0);
 }

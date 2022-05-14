@@ -73,12 +73,6 @@ ScavTrap& ScavTrap::operator=(const ScavTrap &other)
 METHODS
 */
 
-void ScavTrap::attack(const std::string& target)
-{
-	std::cout << "(ScavTrap) ";
-	ClapTrap::attack(target);
-}
-
 void ScavTrap::guardGate(void)
 {
 	std::cout	<< "An object of class ScavTrap '" << this->getName()
