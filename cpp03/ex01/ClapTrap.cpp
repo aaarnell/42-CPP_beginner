@@ -16,10 +16,10 @@ ClapTrap::ClapTrap(void)
 		damagePoints(0)
 {
 	std::cout	<< "The default Claptrap class constructor"
-				<< " created an object wit name 'Default'." << std::endl;
+				<< " created an object with name 'Default'." << std::endl;
 }
 
-ClapTrap::ClapTrap(std::string _name, int hp = 10, int ep = 10, int dp = 0)
+ClapTrap::ClapTrap(std::string _name, int hp, int ep, int dp)
 {
 	name = _name;
 	maxHP = hp;
@@ -91,24 +91,64 @@ ClapTrap& ClapTrap::operator=(const ClapTrap &other)
 METHODS
 */
 
-std::string ClapTrap::getName(void)
+std::string ClapTrap::getName(void) const
 {
 	return name;
 }
 
-int ClapTrap::getHitPoints(void)
+int ClapTrap::getMaxHP(void) const
+{
+	return maxHP;
+}
+
+int ClapTrap::getMaxEP(void) const
+{
+	return maxEP;
+}
+
+int ClapTrap::getHitPoints(void) const
 {
 	return hitPoints;
 }
 
-int ClapTrap::getEnergyPoints(void)
+int ClapTrap::getEnergyPoints(void) const
 {
 	return energyPoints;
 }
 
-int ClapTrap::getDamagePoints(void)
+int ClapTrap::getDamagePoints(void) const
 {
 	return damagePoints;
+}
+
+void ClapTrap::setName(std::string _name)
+{
+	name = _name;
+}
+
+void ClapTrap::setMaxHP(int value)
+{
+	maxHP = value;
+}
+
+void ClapTrap::setMaxEP(int value)
+{
+	maxEP = value;
+}
+
+void ClapTrap::setHitPoints(int value)
+{
+	hitPoints = value;
+}
+
+void ClapTrap::setEnergyPoints(int value)
+{
+	energyPoints = value;
+}
+
+void ClapTrap::setDamagePoints(int value)
+{
+	damagePoints = value;
 }
 
 void ClapTrap::attack(const std::string& target)

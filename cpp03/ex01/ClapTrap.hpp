@@ -1,4 +1,5 @@
 #pragma once
+#include <string>
 
 class ClapTrap
 {
@@ -16,10 +17,18 @@ public:
 	ClapTrap(const ClapTrap &other);
 	~ClapTrap(void);
 
-	std::string getName(void);
-	int			getHitPoints(void);
-	int			getEnergyPoints(void);
-	int			getDamagePoints(void);
+	std::string	getName(void) const;
+	int			getMaxHP(void) const;
+	int			getMaxEP(void) const;
+	int			getHitPoints(void) const;
+	int			getEnergyPoints(void) const;
+	int			getDamagePoints(void) const;
+	void		setName(std::string	_name);
+	void		setMaxHP(int value);
+	void		setMaxEP(int value);
+	void		setHitPoints(int value);
+	void		setEnergyPoints(int value);
+	void		setDamagePoints(int value);
 
 	void	attack(const std::string& target);
 	void	takeDamage(unsigned int amount);
