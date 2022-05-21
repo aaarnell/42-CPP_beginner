@@ -6,14 +6,13 @@ CONSTRUCTORS
 
 Form::Form()
 	:	name("DefaultForm"),
-		sign(0),
+		sign(false),
 		gradeToSign(MIN_GRADE),
 		gradeToExec(MIN_GRADE)
 {}
 
-Form::Form(std::string _name, bool _sign, int _gradeToSign, int _gradeToExec)
+Form::Form(std::string _name, unsigned int _gradeToSign, unsigned int _gradeToExec)
 	:	name(_name),
-		sign(_sign),
 		gradeToSign(_gradeToSign),
 		gradeToExec(_gradeToExec)
 {
@@ -21,6 +20,7 @@ Form::Form(std::string _name, bool _sign, int _gradeToSign, int _gradeToExec)
 		throw Form::GradeTooHighException();
 	if (_gradeToSign > MIN_GRADE || _gradeToExec > MIN_GRADE)
 		throw Form::GradeTooLowException();
+	sign = false;
 }
 
 Form::Form(const Form &other)
@@ -52,7 +52,7 @@ Form& Form::operator=(const Form &other)
 std::ostream& operator<<(std::ostream &out, const Form &obj)
 {
 	out	<< "Form's name = '" << obj.getName()
-		<< "', signature sign  = '" << obj.getGrade()
+		<< "', signature sign  = '" << obj.getSign()
 		<< "', grade for signing = " << obj.getGradeToSign()
 		<< ", grade for executing = " << obj.getGradeToExec();
 	return out;
@@ -72,21 +72,28 @@ bool Form::getSign() const
 	return sign;
 }
 
-int Form::getGradeToSign() const
+unsigned int Form::getGradeToSign() const
 {
 	return gradeToSign;
 }
 
-int Form::getGradeToExec() const
+unsigned int Form::getGradeToExec() const
 {
 	return gradeToExec;
 }
 
 void Form::beSigned(const Bureaucrat &obj)
 {
-	if (obj.grade)
+	if (this->sign == true)
+		throw Form::AlreadySigned();
+	if (obj.getGrade() > gradeToSign || obj.getGrade() > gradeToExec)
+		throw Form::GradeTooLowException();
+	this->sign = true;
+}
 
-	this->sign = 1;
+const char* Form::AlreadySigned::what() const throw()
+{
+	return "The form has already been signed.";
 }
 
 const char* Form::GradeTooHighException::what() const throw()

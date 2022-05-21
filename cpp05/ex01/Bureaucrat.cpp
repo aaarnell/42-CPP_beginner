@@ -7,7 +7,7 @@ CONSTRUCTORS
 Bureaucrat::Bureaucrat() : name("Bureaucrat"), grade(MIN_GRADE)
 {}
 
-Bureaucrat::Bureaucrat(const std::string _name, int _grade)
+Bureaucrat::Bureaucrat(const std::string _name, unsigned int _grade)
 	: name(_name), grade(_grade)
 {
 	if (_grade < MAX_GRADE)
@@ -54,7 +54,7 @@ std::string Bureaucrat::getName() const
 	return name;
 }
 
-int Bureaucrat::getGrade() const
+unsigned int Bureaucrat::getGrade() const
 {
 	return grade;
 }
@@ -77,13 +77,13 @@ void Bureaucrat::signForm(Form &form)
 {
 	try
 	{
-		form.beSigned(this);
-		std::cout << "'" << this->name << "' signed '" << form.name << "'" << std::endl;
+		form.beSigned(*this);
+		std::cout << "'" << this->name << "' signed '" << form.getName() << "'" << std::endl;
 	}
 	catch(std::exception &e)
 	{
 		std::cerr	<< "'" << this->name << "' couldn’t sign '"
-					<< form.name << "' because '" << e.what() << "'." << std::endl;
+					<< form.getName() << "' because '" << e.what() << "'." << std::endl;
 	}
 }
 

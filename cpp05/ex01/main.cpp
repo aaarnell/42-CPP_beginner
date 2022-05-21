@@ -1,85 +1,65 @@
+#include "Form.hpp"
 #include "Bureaucrat.hpp"
 
 int main()
 {
-	std::cout << "--- Test01 (grade 1, decrease by 1) -->" << std::endl;
-	try{
-		Bureaucrat crat("Dodo01", 1);
-		std::cout << "Before: ";
-		std::cout << crat << std::endl;
-		crat.decreaseGrade();
-		std::cout << "After: ";
-		std::cout << crat << std::endl;
-	}
-	catch (std::exception &e)
+	std::cout << "--------------------" << std::endl;
+	std::cout << "--- check create ---" << std::endl;
+	std::cout << "--------------------\n" << std::endl;
+
+	unsigned int var[] = {0, 1, 150, 151};
+	const int num = sizeof(var) / sizeof(var[0]);
+
+	for (int i = 0; i < num; i++)
 	{
-		std::cerr << "EXCEPTION: ";
-		std::cerr << e.what() << std::endl;
+		for (int j = 0; j < num; j++)
+		{
+			std::cout << "(gradeToSign = " << var[i] << ", gradeToExec = " << var[j] << ")\t";
+			try
+			{
+				Form form("InvalidForm", var[i], var[j]);
+				std::cout << "Form successfully created" << std::endl;
+			}
+			catch(const std::exception& e)
+			{
+				std::cerr << "The form has not been created. Cause: " << e.what() << std::endl;
+			}
+		}
 	}
 
-	std::cout << "\n--- Test02 (grade 1, increase by 1) -->" << std::endl;
-	try{
-		Bureaucrat crat("Dodo02", 1);
-		std::cout << "Before: ";
-		std::cout << crat << std::endl;
-		crat.increaseGrade();
-		std::cout << "After: ";
-		std::cout << crat << std::endl;
-	}
-	catch (std::exception &e)
+	std::cout << "\n------------------" << std::endl;
+	std::cout << "--- check sign ---" << std::endl;
+	std::cout << "------------------\n" << std::endl;
+
+	Form *forms[] =
 	{
-		std::cerr << "EXCEPTION: ";
-		std::cerr << e.what() << std::endl;
+		new Form("A11", 150, 150), new Form("B12", 130, 130),
+		new Form("C13", 100, 100), new Form("D14", 50, 50),
+		new Form("E15", 30, 30), new Form("F16", 1, 1),
+	};
+
+	Bureaucrat *crats[] =
+	{
+		new Bureaucrat("crat11", 150), new Bureaucrat("crat12", 128),
+		new Bureaucrat("crat11", 98), new Bureaucrat("crat12", 50),
+		new Bureaucrat("crat11", 30), new Bureaucrat("crat12", 2),
+	};
+
+	for (int i = 0; i < 6; i++)
+	{
+		std::cout	<< "--- Form '" << forms[i]->getName()
+					<< "', signing status = '" << forms[i]->getSign()
+					<< "' --->" << std::endl;
+		for (int j = 0; j < 6; j++)
+			crats[j]->signForm(*forms[i]);
+		std::cout	<< "---> Signing status of Form = '" << forms[i]->getSign()
+					<< "'\n" << std::endl;
 	}
 
-	std::cout << "\n--- Test03 (grade 150, increase by 1) -->" << std::endl;
-	try{
-		Bureaucrat crat("Dodo03", 150);
-		std::cout << "Before: ";
-		std::cout << crat << std::endl;
-		crat.increaseGrade();
-		std::cout << "After: ";
-		std::cout << crat << std::endl;
-	}
-	catch (std::exception &e)
+	for (int i = 0; i < 6; i++)
 	{
-		std::cerr << "EXCEPTION: ";
-		std::cerr << e.what() << std::endl;
-	}
-
-	std::cout << "\n--- Test04 (grade 150, decrease by 1) -->" << std::endl;
-	try{
-		Bureaucrat crat("Dodo04", 150);
-		std::cout << "Before: ";
-		std::cout << crat << std::endl;
-		crat.decreaseGrade();
-		std::cout << "After: ";
-		std::cout << crat << std::endl;
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << "EXCEPTION: ";
-		std::cerr << e.what() << std::endl;
-	}
-
-	std::cout << "\n--- Test05 (create obj. with grade <1) -->" << std::endl;
-	try{
-		Bureaucrat crat("Dodo05", 0);
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << "EXCEPTION: ";
-		std::cerr << e.what() << std::endl;
-	}
-
-	std::cout << "\n--- Test06 (create obj. with grade >150) -->" << std::endl;
-	try{
-		Bureaucrat crat("Dodo06", 151);
-	}
-	catch (std::exception &e)
-	{
-		std::cerr << "EXCEPTION: ";
-		std::cerr << e.what() << std::endl;
+		delete forms[i];
+		delete crats[i];
 	}
 	return 0;
 }
