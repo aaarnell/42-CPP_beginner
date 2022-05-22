@@ -4,6 +4,21 @@
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
+static void changeGrade(Bureaucrat &obj, unsigned int newGrade)
+{
+	if (newGrade < MAX_GRADE || newGrade > MIN_GRADE)
+		return ;
+	while (obj.getGrade() != newGrade)
+	{
+		if (obj.getGrade() < newGrade)
+			obj.decreaseGrade();
+		else
+			obj.increaseGrade();
+	}
+	std::cout	<< "--> Bureaucrat grade has been increased to "
+				<< newGrade << "." << std::endl;
+}
+
 int main()
 {
 	Bureaucrat crat("God", 150);
@@ -15,15 +30,17 @@ int main()
 
 	for (int i = 0; i < 3; i++)
 	{
-		while (forms[i]->getExec() == false)
-		{
-			if (forms[i]->getSign() == false)
-				crat.signForm(*forms[i]);
-			else
-				crat.executeForm(*forms[i]);
-			crat.increaseGrade();
-		}
+		crat.executeForm(*forms[i]);
+		crat.signForm(*forms[i]);
+		changeGrade(crat, forms[i]->getGradeToSign());
+		crat.signForm(*forms[i]);
+		crat.signForm(*forms[i]);
+		crat.executeForm(*forms[i]);
+		changeGrade(crat, forms[i]->getGradeToExec());
+		crat.executeForm(*forms[i]);
 	}
+
+	std::cout << crat << std::endl;
 
 	for (int i = 0; i < 3; i++)
 		delete forms[i];

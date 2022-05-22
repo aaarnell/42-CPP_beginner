@@ -32,7 +32,6 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 	if (this == &other)
 		return *this;
 	this->sign = other.sign;
-	this->exec = other.exec;
 	return *this;
 }
 

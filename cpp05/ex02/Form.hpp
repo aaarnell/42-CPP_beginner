@@ -13,7 +13,6 @@ class Form
 protected:
 	const std::string	name;
 	bool				sign;
-	bool				exec;
 	const unsigned int	gradeToSign;
 	const unsigned int	gradeToExec;
 
@@ -25,8 +24,6 @@ public:
 
 	const std::string&	getName() const;
 	bool				getSign() const;
-	bool				getExec() const;
-	void				setExec();
 	unsigned int		getGradeToSign() const;
 	unsigned int		getGradeToExec() const;
 	void				beSigned(const Bureaucrat &obj);

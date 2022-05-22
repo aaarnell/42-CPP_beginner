@@ -33,7 +33,6 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm &o
 	if (this == &other)
 		return *this;
 	this->sign = other.sign;
-	this->exec = other.exec;
 	return *this;
 }
 
@@ -47,13 +46,8 @@ void RobotomyRequestForm::execute(const Bureaucrat &executor) const
 	this->checkBeforeExec(executor);
 
 	std::cout << "... drilling noises ..." << std::endl;
-	if (rand() % 2 == 0)
+	if (rand() % 2)
 		std::cout << this->target << " has been robotomized successfully." << std::endl;
 	else
-		throw Form::FiledRobotomy();
-}
-
-const char* RobotomyRequestForm::FiledRobotomy::what() const throw()
-{
-	return "Robotomy failed.";
+		std::cout << this->target << " robotomy failed." << std::endl;
 }

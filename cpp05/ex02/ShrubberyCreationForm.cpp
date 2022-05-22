@@ -33,7 +33,6 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	if (this == &other)
 		return *this;
 	this->sign = other.sign;
-	this->exec = other.exec;
 	return *this;
 }
 
@@ -46,7 +45,8 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 {
 	this->checkBeforeExec(executor);
 
-	std::ofstream out.open(target + "_shrubbery");
+	std::ofstream out;
+	out.open(target + "_shrubbery");
 
 	if (!out)
 		return ;

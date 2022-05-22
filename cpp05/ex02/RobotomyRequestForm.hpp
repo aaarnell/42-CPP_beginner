@@ -15,10 +15,5 @@ public:
 
 	virtual void execute(const Bureaucrat &executor) const;
 
-	class FiledRobotomy : public std::exception
-	{
-		public: virtual const char* what() const throw();
-	};
-
 	RobotomyRequestForm& operator=(const RobotomyRequestForm &other);
 };

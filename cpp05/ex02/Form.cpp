@@ -7,7 +7,6 @@ CONSTRUCTORS
 Form::Form()
 	:	name("DefaultForm"),
 		sign(false),
-		exec(false),
 		gradeToSign(MIN_GRADE),
 		gradeToExec(MIN_GRADE)
 {}
@@ -22,13 +21,11 @@ Form::Form(std::string _name, unsigned int _gradeToSign, unsigned int _gradeToEx
 	if (_gradeToSign > MIN_GRADE || _gradeToExec > MIN_GRADE)
 		throw Form::GradeTooLowException();
 	sign = false;
-	exec = false;
 }
 
 Form::Form(const Form &other)
 	:	name(other.name),
 		sign(other.sign),
-		exec(other.exec),
 		gradeToSign(other.gradeToSign),
 		gradeToExec(other.gradeToExec)
 {}
@@ -49,7 +46,6 @@ Form& Form::operator=(const Form &other)
 	if(this == &other)
 		return *this;
 	this->sign = other.sign;
-	this->exec = other.exec;
 	return *this;
 }
 
@@ -76,16 +72,6 @@ bool Form::getSign() const
 	return sign;
 }
 
-bool Form::getExec() const
-{
-	return exec;
-}
-
-void Form::setExec()
-{
-	this->exec = true;
-}
-
 unsigned int Form::getGradeToSign() const
 {
 	return gradeToSign;
@@ -100,7 +86,7 @@ void Form::beSigned(const Bureaucrat &obj)
 {
 	if (this->sign == true)
 		throw Form::AlreadySigned();
-	if (obj.getGrade() > gradeToSign || obj.getGrade() > gradeToExec)
+	if (obj.getGrade() > gradeToSign)
 		throw Form::GradeTooLowException();
 	this->sign = true;
 }
