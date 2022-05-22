@@ -52,7 +52,7 @@ void ShrubberyCreationForm::execute(const Bureaucrat &executor) const
 		return ;
 
 	out <<
-		"              &&& &&  & &\n"
+		"          &&& &&  & &\n"
 		"      && &\\/&\\|& ()|/ @, &&\n"
 		"      &\\/(/&/&||/& /_/)_&/_&\n"
 		"   &() &\\/&|()|/&\\/ '%\" & ()\n"
