@@ -6,34 +6,39 @@
 #    By: aarnell <aarnell@student.21-school.ru>     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/01 16:16:16 by aarnell           #+#    #+#              #
-#    Updated: 2022/05/22 16:41:29 by aarnell          ###   ########.fr        #
+#    Updated: 2022/05/24 19:51:27 by aarnell          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME 	= 	convert
+NAME	=	ex00
 
-FLAGS	= 	-Wall -Werror -Wextra -std=c++98
+FLAGS	=	-Wall -Werror -Wextra -g -std=c++98
 
-SRS		= 	main.cpp	Zombie.cpp	newZombie.cpp	randomChump.cpp
+SRC		=	$(shell find . -type f -name '*.cpp')
 
-OBJS	=	$(SRS:.cpp=.o)
+OBJS	=	$(SRC:.cpp=.o)
 
-CC		=	c++
+D_FILES	=	$(SRC:.cpp=.d)
 
-all : 		$(NAME)
+CXX		=	c++
+
+all		:	$(NAME)
 
 %.o :		%.cpp
-			$(CC) $(FLAGS) -c $< -o $@
+			$(CXX) $(FLAGS) -c $< -o $@ -MMD
 
-$(NAME)	: 	$(OBJS)
-			$(CC) $(FLAGS) $(OBJS) -o $(NAME)
+$(NAME)	:	$(OBJS)
+			$(CXX) $(FLAGS) $(OBJS) -o $@
 
-clean :
-			rm -f $(OBJS)
+clean	:
+			$(RM) $(OBJS) $(D_FILES)
 
-fclean : 	clean
-			rm -f $(NAME)
+fclean	:	clean
+			$(RM) $(NAME)
 
-re :		fclean all
+re		:	fclean
+			$(MAKE)
 
 .PHONY: all clean fclean re
+
+-include $(D_FILES)
