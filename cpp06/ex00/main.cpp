@@ -1,6 +1,8 @@
 #include <string>
 #include <stdexcept>
 #include <iostream>
+#include <iomanip>
+#include "Converter.hpp"
 
 bool isNanInf(std::string &str)
 {
@@ -14,7 +16,7 @@ bool isNanInfF(std::string &str)
 
 bool isChar(std::string &str)
 {
-	return str.length() == 1 && !isdigit(str[1]);
+	return str.length() == 1 && !isdigit(str[0]);
 }
 
 bool isFloat(std::string &str)
@@ -63,7 +65,7 @@ int main(int argc, char *argv[])
 	try { getType(input, type); }
 	catch(const std::out_of_range& e)
 	{
-		std::cerr << "Out of range for ." << std::endl;
+		std::cerr << "Out of range." << std::endl;
 		return 1;
 	}
 	catch(const std::invalid_argument& e)
@@ -79,25 +81,29 @@ int main(int argc, char *argv[])
 	if (type == "false")
 		return 1;
 
+	std::cout << "type: " << type << std::endl;
+
+	std::cout << std::setprecision(1) << std::fixed;
+
 	if (type == "char")
 	{
-		// std::cout << type << ": " << input[0] << std::endl;
-
+		Converter<char> conv(static_cast<char>(input[0]));
+		conv.printTypes();
 	}
 	else if (type == "double")
 	{
-		// std::cout << type << ": " << stod(input, NULL) << std::endl;
-
+		Converter<double> conv(static_cast<double>(stod(input, NULL)));
+		conv.printTypes();
 	}
 	else if (type == "float")
 	{
-		// std::cout << type << ": " << stof(input, NULL) << std::endl;
-
+		Converter<float> conv(static_cast<float>(stof(input, NULL)));
+		conv.printTypes();
 	}
 	else if (type == "integer")
 	{
-		// std::cout << type << ": " << stoi(input, NULL) << std::endl;
-
+		Converter<int> conv(static_cast<int>(stoi(input, NULL)));
+		conv.printTypes();
 	}
 	return 0;
 }
