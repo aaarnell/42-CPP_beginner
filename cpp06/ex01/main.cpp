@@ -31,7 +31,7 @@ int main()
 
 	ptr2 = deserialize(res);
 
-	std::cout << "name_ptr2 = '" << ptr2->name << "', value_ptr2 = '" << ptr2->value << "'" << std::endl;
+	std::cout << "name_ptr2 = '" << ptr2->name << "', value_ptr2 = '"  << std::dec << ptr2->value << "'" << std::endl;
 
 	return 0;
 }
