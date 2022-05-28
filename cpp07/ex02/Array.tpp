@@ -17,7 +17,10 @@ Array<T>::Array(unsigned int _size)
 template <typename T>
 Array<T>::Array(const Array<T>& other)
 	:	arr(new T[other.size_]), size_(other.size_)
-{}
+{
+	for (unsigned int i = 0; i < other.size_; i++)
+		arr[i] = other.arr[i];
+}
 
 /*
 DESTRUCTORS
