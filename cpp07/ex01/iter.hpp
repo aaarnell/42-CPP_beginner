@@ -6,3 +6,10 @@ void iter(T* array, unsigned int s, void (*f)(T&))
 	for (unsigned int i = 0; i < s; i++)
 		f(array[i]);
 }
+
+template <typename T>
+void iter(T* array, unsigned int s, void (*f)(T const&))
+{
+	for (unsigned int i = 0; i < s; i++)
+		f(array[i]);
+}
